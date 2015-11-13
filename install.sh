@@ -1,4 +1,5 @@
 #! /bin/bash
+source set-env.sh
 vagrant destroy
 vagrant up
 rm package.box
