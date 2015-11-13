@@ -21,6 +21,13 @@ cat > ~/auto_config/site.yml <<EOL
       - vim
       - docker
 EOL
+
+cat > /etc/pip.conf <<EOL
+[global]
+# /etc/pip.conf
+proxy = 192.168.1.172:3128
+EOL
+
 sudo pip install ansible
 echo 'start ansible playbook'
 sudo ansible-playbook -i ~/auto_config/hosts ~/auto_config/site.yml -vvv
