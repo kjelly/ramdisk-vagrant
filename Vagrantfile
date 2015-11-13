@@ -15,6 +15,11 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
 
+  proxy = "192.168.1.172:3128"
+  config.proxy.http     = "http://" + proxy + "/"
+  config.proxy.https    = "https://" + proxy + "/"
+  config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
+
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
