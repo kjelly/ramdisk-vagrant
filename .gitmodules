@@ -1,0 +1,3 @@
+[submodule "kolla/docker-proxy"]
+	path = kolla/docker-proxy
+	url = https://github.com/silarsis/docker-proxy
