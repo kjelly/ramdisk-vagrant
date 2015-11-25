@@ -7,8 +7,8 @@ EOL
 
 sudo apt-get update
 sudo apt-get install -y curl git python-dev python-pip curl
-git clone https://github.com/ya790206/auto_config --branch ansible ~/auto_config
-cat > ~/auto_config/site.yml <<EOL
+sudo -u vagrant git clone https://github.com/ya790206/auto_config --branch ansible ~/auto_config
+sudo -u vagrant cat > ~/auto_config/site.yml <<EOL
 - name: install
   remote_user: root
   hosts: target
@@ -30,6 +30,5 @@ EOL
 
 sudo pip install ansible
 echo 'start ansible playbook'
-sudo ansible-playbook -i ~/auto_config/hosts ~/auto_config/site.yml -vvv
+sudo -u vagrant ansible-playbook -i ~/auto_config/hosts ~/auto_config/site.yml -vvv
 echo 'end ansible playbook'
-sudo apt-get install -y --force-yes docker-engine=1.8.2-0~trusty
