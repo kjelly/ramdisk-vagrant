@@ -10,7 +10,7 @@ sudo apt-get install -y curl git python-dev python-pip curl
 sudo -u vagrant git clone https://github.com/ya790206/auto_config --branch ansible /home/vagrant/auto_config
 sudo -u vagrant cat > /home/vagrant/auto_config/site.yml <<EOL
 - name: install
-  remote_user: root
+  remote_user: vagrant
   hosts: target
 
   roles:
@@ -30,5 +30,5 @@ EOL
 
 sudo pip install ansible
 echo 'start ansible playbook'
-sudo -u vagrant ansible-playbook -i /home/vagrant/auto_config/hosts /home/vagrant/auto_config/site.yml -vvv
+su vagrant -c ' ansible-playbook -i /home/vagrant/auto_config/hosts /home/vagrant/auto_config/site.yml -vvv --extra-vars "ansible_user=`whoami`"'
 echo 'end ansible playbook'
