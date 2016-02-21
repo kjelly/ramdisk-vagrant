@@ -15,12 +15,11 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
 
-  config.ssh.insert_key = false
-
-  proxy = "192.168.1.172:3128"
-  config.proxy.http     = "http://" + proxy + "/"
-  #config.proxy.https    = "https://" + proxy + "/"
+  config.proxy.http     = "http://192.168.1.92:3128/"
+  #config.proxy.https    = "http://192.168.0.2:3128/"
   config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
+
+  config.ssh.insert_key = false
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
