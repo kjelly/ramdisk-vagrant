@@ -17,7 +17,7 @@ sudo -u vagrant cat > /home/vagrant/auto_config/site.yml <<EOL
       - common-packages
       - developer-packages
       - zsh
-      - bash
+      - bash-it
       - vim
       - docker
 EOL
