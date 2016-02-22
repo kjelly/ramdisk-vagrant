@@ -14,10 +14,11 @@ Vagrant.configure(2) do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "ubuntu/trusty64"
+  config.vm.hostname =  Pathname.new(File.dirname(__FILE__)).basename
 
   config.proxy.http     = "http://192.168.1.92:3128/"
   #config.proxy.https    = "http://192.168.0.2:3128/"
-  config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
+  config.proxy.no_proxy = "localhost,127.0.0.1,.example.com,10.0.2.15/24,192.168.33.10/24"
 
   config.ssh.insert_key = false
 

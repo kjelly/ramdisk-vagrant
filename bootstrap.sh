@@ -43,6 +43,7 @@ sudo -u vagrant cat > /home/vagrant/auto_config/site.yml <<EOL
       - bash-it
       - vim
       - docker
+      - fish
 EOL
 
 cat > /etc/pip.conf <<EOL
