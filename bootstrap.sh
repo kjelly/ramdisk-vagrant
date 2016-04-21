@@ -25,6 +25,8 @@ deb-src http://mirror01.idc.hinet.net/ubuntu/ trusty-security universe
 deb http://mirror01.idc.hinet.net/ubuntu/ trusty-security multiverse
 deb-src http://mirror01.idc.hinet.net/ubuntu/ trusty-security multiverse
 
+deb https://apt.dockerproject.org/repo ubuntu-trusty main
+
 EOL
 
 sudo apt-get update
@@ -38,11 +40,9 @@ sudo -u vagrant cat > /home/vagrant/auto_config/site.yml <<EOL
     programming: true
 
   roles:
-      - common-packages
       - zsh
       - bash-it
       - vim
-      - docker
       - fish
 EOL
 
