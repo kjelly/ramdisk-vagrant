@@ -1,0 +1,6 @@
+<pool type="dir">
+  <name>ramdisk</name>
+  <target>
+    <path>/ramdisk</path>
+  </target>
+</pool>

@@ -1,0 +1,6 @@
+<pool type="dir">
+  <name>shm</name>
+  <target>
+    <path>/dev/shm</path>
+  </target>
+</pool>

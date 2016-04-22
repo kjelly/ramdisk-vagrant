@@ -37,7 +37,7 @@ sudo -u vagrant cat > /home/vagrant/auto_config/site.yml <<EOL
   remote_user: "{{ ansible_user }}"
   hosts: "{{ group }}"
   vars:
-    programming: true
+    programming: false
 
   roles:
       - zsh
@@ -52,7 +52,7 @@ cat > /etc/pip.conf <<EOL
 proxy = 192.168.1.92:3128
 EOL
 
-sudo pip install ansible
+sudo pip install ansible==2.0.0.0
 echo 'start ansible playbook'
 su vagrant -c ' python /home/vagrant/auto_config/run.py -i /home/vagrant/auto_config/hosts -p /home/vagrant/auto_config/site.yml -a deploy '
 echo 'end ansible playbook'
