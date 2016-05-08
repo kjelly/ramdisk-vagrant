@@ -49,9 +49,9 @@ EOL
 cat > /etc/pip.conf <<EOL
 [global]
 # /etc/pip.conf
-proxy = 192.168.1.92:3128
+proxy = 192.168.1.49:3128
 EOL
-
+sudo bash /home/vagrant/auto_config/install-deb-dependency.sh
 sudo pip install ansible==2.0.0.0
 echo 'start ansible playbook'
 su vagrant -c ' python /home/vagrant/auto_config/run.py -i /home/vagrant/auto_config/hosts -p /home/vagrant/auto_config/site.yml -a deploy '

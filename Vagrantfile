@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/wily64"
   config.vm.hostname =  Pathname.new(File.dirname(__FILE__)).basename
 
   proxy_ip = local_ip
@@ -34,6 +34,9 @@ Vagrant.configure(2) do |config|
   config.proxy.no_proxy = "localhost,127.0.0.1,.example.com,10.0.2.15/24,192.168.33.10/24"
 
   config.ssh.insert_key = false
+
+
+  config.vbguest.iso_path = "VBoxGuestAdditions_%{version}.iso"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
