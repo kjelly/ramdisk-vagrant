@@ -30,7 +30,7 @@ deb https://apt.dockerproject.org/repo ubuntu-trusty main
 EOL
 
 sudo apt-get update
-sudo apt-get install -y curl git python-dev python-pip curl
+sudo apt-get install -y curl git python-pip curl
 sudo -u vagrant git clone https://github.com/ya790206/auto_config
 sudo -u vagrant cat > /home/vagrant/auto_config/site.yml <<EOL
 - name: install
@@ -53,6 +53,8 @@ proxy = 192.168.1.49:3128
 EOL
 sudo bash /home/vagrant/auto_config/install-deb-dependency.sh
 sudo pip install ansible==2.0.0.0
+sudo apt-get remove -y --force-yes python-cryptography
+sudo pip uninstall python-cryptography
 echo 'start ansible playbook'
 su vagrant -c ' python /home/vagrant/auto_config/run.py -i /home/vagrant/auto_config/hosts -p /home/vagrant/auto_config/site.yml -a deploy '
 echo 'end ansible playbook'

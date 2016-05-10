@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/wily64"
+  config.vm.box = "ubuntu/xenial64"
   config.vm.hostname =  Pathname.new(File.dirname(__FILE__)).basename
 
   proxy_ip = local_ip
@@ -38,30 +38,6 @@ Vagrant.configure(2) do |config|
 
   config.vbguest.iso_path = "VBoxGuestAdditions_%{version}.iso"
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
-
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network "public_network"
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
   config.vm.provider "virtualbox" do |vb|
     # Customize the amount of memory on the VM:
     host = RbConfig::CONFIG['host_os']
@@ -80,6 +56,19 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--cpus", cpus]
     vb.customize ["modifyvm", :id, "--memory", mem]
   end
+
+	config.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 2
+      domain.nested = true
+      domain.volume_cache = 'unsafe'
+      domain.cpu_mode = 'host-passthrough'
+      domain.graphics_ip = '0.0.0.0'
+      domain.machine_type = 'ubuntu'
+
+    end
+
+
   config.vm.provision "shell" do |s|
      ssh_pub_key = File.readlines("#{Dir.home}/.ssh/id_rsa.pub").first.strip
      s.inline = <<-SHELL
