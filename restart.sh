@@ -1,4 +1,9 @@
 #! /bin/bash
 source set-env.sh
 vagrant destroy
-vagrant up  --provider=libvirt
+if [ "$1" = "l" ]
+then
+    vagrant up --provider=libvirt
+else
+    vagrant up
+fi

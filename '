@@ -30,9 +30,11 @@ Vagrant.configure(2) do |config|
 
   config.ssh.insert_key = false
 
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
   # config.vm.network "private_network", ip: "192.168.33.10"
-  #config.vm.network "public_network", :mode => "bridge", :mac => "080027000001" ,:dev => "enp0s31f6"
+  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "public_network", bridged, :mac => "080027000001"
+
+
 
   config.vbguest.iso_path = "VBoxGuestAdditions_%{version}.iso"
 
@@ -56,7 +58,6 @@ Vagrant.configure(2) do |config|
   end
 
 	config.vm.provider :libvirt do |domain|
-      domain.uri = "qemu+tcp://192.168.1.3/system"
       domain.memory = 2048
       domain.cpus = 2
       domain.nested = true
